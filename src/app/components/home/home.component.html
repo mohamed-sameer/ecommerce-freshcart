@@ -1,0 +1,65 @@
+<!-- main slider -->
+<section>
+  <div class="row g-0">
+    <div class="col-md-10">
+      <div>
+        <owl-carousel-o [options]="mainCustomOptions">
+          <ng-template carouselSlide>
+            <img
+              height="300"
+              class="w-100"
+              src="../../../assets/images/banner-4.jpeg"
+              alt=""
+            />
+          </ng-template>
+          <ng-template carouselSlide>
+            <img
+              height="300"
+              class="w-100"
+              src="./assets/images/grocery-banner.png"
+              alt=""
+            />
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div>
+        <img
+          height="150"
+          class="w-100"
+          src="./assets/images/slider-image-1.jpeg"
+          alt=""
+        />
+        <img
+          height="150"
+          class="w-100"
+          src="./assets/images/slider-image-2.jpeg"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- categories sections -->
+<section class="my-2">
+  <h2>Popular Categories</h2>
+  <owl-carousel-o [options]="CategoryCustomOptions">
+    @for (category of categoriesList; track category._id) {
+
+    <ng-template carouselSlide>
+      <div>
+        <img
+          class="w-100"
+          height="250"
+          [src]="category.image"
+          [alt]="category.name"
+        />
+        <h3 class="h6 text-main">{{ category.name }}</h3>
+      </div>
+    </ng-template>
+    }
+  </owl-carousel-o>
+</section>
+<!--  products section -->
+<app-products></app-products>

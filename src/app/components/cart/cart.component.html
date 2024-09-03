@@ -1,0 +1,52 @@
+<section class="bg-main-light rounded-4 shadow p-4 my-2 w-75 mx-auto">
+  <h1 class="h2 text-center">shop Cart</h1>
+  <p>Total Cart Price: {{ userCart.totalCartPrice | currency : "GBP" }}</p>
+
+  @for (item of userCart.products; track item.product._id) {
+  <div class="row mb-1 border-bottom">
+    <div class="col-md-1">
+      <img
+        class="w-100"
+        [src]="item.product.imageCover"
+        [alt]="item.product.title"
+      />
+    </div>
+    <div class="col-md-11 d-flex align-items-center justify-content-between">
+      <div>
+        <h3 class="h5">{{ item.product.title }}</h3>
+        <p class="text-main m-0">price: {{ item.price }}</p>
+        <span
+          class="text-danger cursor-pointer"
+          (click)="deleteItem(item.product._id)"
+        >
+          <i class="fa-solid fa-trash"></i>
+        </span>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span
+          class="text-main cursor-pointer"
+          (click)="updateQty(item.product._id, item.count + 1)"
+        >
+          <i class="fa-solid fa-circle-plus fa-xl"></i>
+        </span>
+        <span>{{ item.count }}</span>
+        <span
+          class="text-main cursor-pointer"
+          (click)="updateQty(item.product._id, item.count - 1)"
+        >
+          <i class="fa-solid fa-circle-minus fa-xl"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+  }
+
+  <div class="d-flex align-items-center justify-content-between mt-2">
+    <button class="btn btn-outline-danger btn-sm" (click)="clearCart()">
+      Clear Cart
+    </button>
+    <button class="btn-main" [routerLink]="['/orders', userCart._id]">
+      Orders
+    </button>
+  </div>
+</section>

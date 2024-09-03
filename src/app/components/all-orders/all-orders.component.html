@@ -1,0 +1,39 @@
+<section class="my-2">
+  <div class="w-75 mx-auto">
+    <table class="table table-striped mb-5">
+      <thead>
+        <tr>
+          <th scope="col">Order Date</th>
+          <th scope="col">Payment method</th>
+          <th scope="col">Items</th>
+          <th scope="col">Total Price</th>
+          <th scope="col">Delivered</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of allUserOrders; track $index) {
+        <tr>
+          <td>{{ item.paidAt | date : "short" }}</td>
+          <td>{{ item.paymentMethodType }}</td>
+          <td>
+            <table class="table">
+              <tbody>
+                @for (paidItem of item.cartItems; track paidItem._id) {
+
+                <tr>
+                  {{
+                    paidItem.product.title | termText : 2
+                  }}
+                </tr>
+                }
+              </tbody>
+            </table>
+          </td>
+          <td>{{ item.totalOrderPrice | currency : "GBP" }}</td>
+          <td>{{ item.isDelivered ? "yes" : "no" }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

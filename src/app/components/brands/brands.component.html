@@ -1,0 +1,20 @@
+@if (allBrands) {
+
+<section class="Brands-section">
+  <h1>Brands</h1>
+  <div class="row g-2">
+    @for (brand of allBrands; track brand._id) {
+    <div class="col-sm-6 col-md-4 col-lg-3">
+      <div class="card">
+        <img [src]="brand.image" class="card-img-top" [alt]="brand.name" />
+        <div class="card-body">
+          <h5 class="text-main card-title text-center fw-bold">
+            {{ brand.name }}
+          </h5>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>
+}

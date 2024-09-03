@@ -1,0 +1,41 @@
+<!--  products section -->
+<section>
+  <h2>Wishlist:</h2>
+  <div class="row g-3">
+    @for (product of userWishlist; track $index) {
+    <div class="col-md-2">
+      <div class="product p-2">
+        <div [routerLink]="['/details', product.slug, product.id]">
+          <img class="w-100" [src]="product.imageCover" [alt]="product.title" />
+          <h3 class="small text-main">{{ product.category.name }}</h3>
+          <h4 class="h6">{{ product.title | termText : 2 }}</h4>
+          <div class="d-flex justify-content-between align-items-center">
+            <span>{{ product.price }} EGP</span>
+            <div>
+              @for (item of [1,2,3,4,5].slice(0, product.ratingsAverage); track
+              $index) {
+
+              <span>
+                <i class="fas fa-star rating-color"></i>
+              </span>
+              } @if (product.ratingsAverage % 1 !== 0) {
+              <i class="fa-solid fa-star-half-stroke rating-color"></i>
+              }
+              <span class="text-muted">{{ product.ratingsAverage }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center gap-2">
+          <button class="btn-main w-100" (click)="addToCart(product.id)">
+            Add To Cart
+          </button>
+
+          <span class="fs-5 cursor-pointer" (click)="addToWishlist(product.id)">
+            <i class="fa-solid fa-heart"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>
